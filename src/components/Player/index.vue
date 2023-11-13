@@ -7,13 +7,51 @@
 <script setup lang="ts">
 import keeperImg from '../../assets/keeper.png'
 import { usePlayerStore } from '../../../store/player'
+import { computed, onMounted, onUnmounted } from 'vue';
 
-const { player } = usePlayerStore()
+useMove()
+const { position } = usePosition()
 
-const STEP = 32
-const position = {
-  left: player.x * STEP + 'px',
-  top: player.y * STEP + 'px'
+function useMove() {
+  const { movePlayerToLeft, movePlayerToRight, movePlayerToDown, movePlayerToUp } = usePlayerStore()
+
+  function handleKeyup(e: KeyboardEvent) {
+    switch (e.code) {
+      case 'ArrowLeft':
+        movePlayerToLeft()
+        break
+      case 'ArrowRight':
+        movePlayerToRight()
+        break
+      case 'ArrowDown':
+        movePlayerToDown()
+        break
+      case 'ArrowUp':
+        movePlayerToUp()
+        break
+
+      default:
+        break
+    }
+  }
+  onMounted(() => {
+    window.addEventListener('keyup', handleKeyup)
+  })
+  onUnmounted(() => {
+    window.removeEventListener('keyup', handleKeyup)
+  })
+}
+
+function usePosition() {
+  const { player } = usePlayerStore()
+  const STEP = 32
+  const position = computed(() => {
+    return {
+      left: player.x * STEP + 'px',
+      top: player.y * STEP + 'px'
+    }
+  })
+  return { position }
 }
 </script>
 
