@@ -2,10 +2,18 @@ import { it, expect, describe, beforeEach } from 'vitest'
 import { usePlayerStore } from '../../../store/player'
 import { useMove } from './player'
 import { createPinia, setActivePinia } from 'pinia';
+import { useMapStore } from '../../../store/map';
 
 describe('keyup test group', () => {
   beforeEach(() => {
     setActivePinia(createPinia())
+    const { setupMap } = useMapStore()
+    const newMap = [
+      [2, 2, 2],
+      [2, 2, 2],
+      [2, 2, 2],
+    ]
+    setupMap(newMap)
   });
   it('press key, play movement', () => {
     const { player } = usePlayerStore()
