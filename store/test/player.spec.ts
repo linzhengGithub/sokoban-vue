@@ -168,5 +168,34 @@ describe('keyup test group', () => {
       expect(cargo.y).toBe(1);
     })
 
+    it('should not push cargo when the cargo hit wall', () => {
+      const { createCargo, addCargo } = useCargoStore()
+      const cargo = createCargo({ x: 3, y: 1 })
+      addCargo(cargo)
+
+      const { player, movePlayerToRight } = usePlayerStore()
+      player.x = 2
+      player.y = 1
+      movePlayerToRight()
+
+      expect(player.x).toBe(2);
+      expect(cargo.x).toBe(3);
+    })
+
+    it('should not push cargo when the cargo hit other cargo', () => {
+      const { createCargo, addCargo } = useCargoStore()
+      const cargo = createCargo({ x: 2, y: 1 })
+      addCargo(cargo)
+      addCargo(createCargo({ x: 3, y: 1 }))
+      
+      const { player, movePlayerToRight } = usePlayerStore()
+      player.x = 1
+      player.y = 1
+      movePlayerToRight()
+
+      expect(player.x).toBe(1);
+      expect(cargo.x).toBe(2);
+    })
+
   })
 })
