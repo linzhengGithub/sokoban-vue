@@ -6,7 +6,7 @@
     </template>
     <Player />
     <template v-for="cargo in cargos">
-      <Cargo :x="cargo.x" :y="cargo.y" />
+      <Cargo :cargo="cargo" />
     </template>
   </div>
 </template>
