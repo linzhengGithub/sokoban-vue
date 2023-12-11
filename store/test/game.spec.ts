@@ -41,16 +41,9 @@ describe('game test', () => {
 
     setupGame(levelGameData)
 
-    expect(map).toEqual([
-      [1, 1, 1, 1, 1, 1, 1],
-      [1, 2, 2, 2, 2, 2, 1],
-      [1, 2, 2, 2, 2, 2, 1],
-      [1, 2, 2, 2, 2, 2, 1],
-      [1, 2, 2, 2, 2, 2, 1],
-      [1, 1, 1, 1, 1, 1, 1]
-    ]);
-    expect(player.x).toBe(1);
-    expect(player.y).toBe(1);
+    expect(map).toEqual(levelGameData.map);
+    expect(player.x).toBe(levelGameData.player.x);
+    expect(player.y).toBe(levelGameData.player.y);
     expect(cargos.length).toBe(2);
     expect(targets.length).toBe(2);
 
