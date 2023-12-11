@@ -3,10 +3,15 @@ import { reactive } from 'vue'
 import { useMapStore } from './map'
 import { useCargoStore } from './cargo';
 
+interface Player {
+  x: number
+  y: number
+}
+
 export const usePlayerStore = defineStore('playerStore', () => {
-  const player = reactive({
-    x: 1,
-    y: 1
+  const player = reactive<Player>({
+    x: 0,
+    y: 0
   })
   const { isWall } = useMapStore()
 
@@ -30,7 +35,6 @@ export const usePlayerStore = defineStore('playerStore', () => {
     player.x += dx
     player.y += dy
   }
-
 
   const movePlayerToLeft = () => {
     _move(-1, 0)
