@@ -4,9 +4,23 @@ import { usePlayerStore } from "./player";
 import { useCargoStore } from "./cargo";
 import { useTargetStore } from "./target";
 import { type LevelGameData } from '../src/game/gameData';
+import { reactive } from "vue";
 
+interface Game {
+  isGameCompleted: boolean
+}
 
 export const useGameStore = defineStore('gameStore', () => {
+
+  const game = reactive<Game>({
+    isGameCompleted: false
+  })
+
+  function detectionGameCompleted() {
+    const { cargos } = useCargoStore()
+    game.isGameCompleted = cargos.every(c => c.onTarget)
+  }
+
   function setupGame(levelGameData: LevelGameData) {
     const { setupMap } = useMapStore()
     const { player } = usePlayerStore()
@@ -20,5 +34,5 @@ export const useGameStore = defineStore('gameStore', () => {
     levelGameData.targets.forEach(t => addTarget(createTarget({ x: t.x, y: t.y })))
   }
 
-  return { setupGame }
+  return { game, detectionGameCompleted, setupGame }
 })

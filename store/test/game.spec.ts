@@ -9,7 +9,45 @@ import { createPinia, setActivePinia } from 'pinia'
 describe('game test', () => {
   beforeEach(() => {
     setActivePinia(createPinia())
+    const { setupMap } = useMapStore()
+    const newMap = [
+      [1, 1, 1, 1, 1],
+      [1, 2, 2, 2, 1],
+      [1, 2, 2, 2, 1],
+      [1, 2, 2, 2, 1],
+      [1, 1, 1, 1, 1]
+    ]
+    setupMap(newMap)
   });
+  it('should game completed', () => {
+    const { detectionGameCompleted, game } = useGameStore()
+
+    const { createCargo, addCargo, moveCargo } = useCargoStore()
+    const cargo = createCargo({ x: 1, y: 2 })
+    addCargo(cargo)
+    const {addTarget, createTarget} = useTargetStore()
+    addTarget(createTarget({ x: 2, y: 2 }))
+
+    moveCargo(cargo, 1, 0)
+    detectionGameCompleted()
+
+    expect(game.isGameCompleted).toBe(true);
+  })
+  it('should game not completed', () => {
+    const { detectionGameCompleted, game } = useGameStore()
+
+    const { createCargo, addCargo, moveCargo } = useCargoStore()
+    const cargo = createCargo({ x: 1, y: 2 })
+    addCargo(cargo)
+    const {addTarget, createTarget} = useTargetStore()
+    addTarget(createTarget({ x: 2, y: 2 }))
+
+    moveCargo(cargo, 1, 0)
+    moveCargo(cargo, 1, 0)
+    detectionGameCompleted()
+
+    expect(game.isGameCompleted).toBe(false);
+  })
   it('should setup game', () => {
     const levelGameData = {
       map: [

@@ -9,10 +9,12 @@ import keeperImg from '../../assets/keeper.png'
 import { usePlayerStore } from '../../../store/player'
 import { onMounted, onUnmounted } from 'vue'
 import { usePosition } from '../../composables/usePosition'
+import { useGameStore } from '../../../store/game'
 
 useMove()
 const { player } = usePlayerStore()
 const { position } = usePosition(player)
+const { detectionGameCompleted } = useGameStore()
 
 function useMove() {
   const { movePlayerToLeft, movePlayerToRight, movePlayerToDown, movePlayerToUp } = usePlayerStore()
@@ -35,6 +37,7 @@ function useMove() {
       default:
         break
     }
+    detectionGameCompleted()
   }
   onMounted(() => {
     window.addEventListener('keyup', handleKeyup)
