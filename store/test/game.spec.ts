@@ -77,7 +77,8 @@ describe('game test', () => {
     const { cargos } = useCargoStore()
     const { targets } = useTargetStore()
 
-    setupGame(levelGameData)
+    const gameData = [levelGameData]
+    setupGame(gameData)
 
     expect(map).toEqual(levelGameData.map);
     expect(player.x).toBe(levelGameData.player.x);
