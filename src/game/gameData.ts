@@ -29,3 +29,5 @@ export const levelGameData: LevelGameData = {
     { x: 4, y: 3 }
   ]
 }
+
+export const gameData: LevelGameData[] = [levelGameData]

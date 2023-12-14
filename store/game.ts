@@ -8,6 +8,7 @@ import { reactive } from "vue";
 
 interface Game {
   isGameCompleted: boolean
+  level: number
 }
 
 type GameData = LevelGameData[]
@@ -15,7 +16,8 @@ type GameData = LevelGameData[]
 export const useGameStore = defineStore('gameStore', () => {
 
   const game = reactive<Game>({
-    isGameCompleted: false
+    isGameCompleted: false,
+    level: 1
   })
 
   function detectionGameCompleted() {
@@ -24,7 +26,7 @@ export const useGameStore = defineStore('gameStore', () => {
   }
 
   function setupGame(gameData: GameData) {
-    const levelGameData = gameData[0]
+    const levelGameData = gameData[game.level - 1]
 
     const { setupMap } = useMapStore()
     const { player } = usePlayerStore()
