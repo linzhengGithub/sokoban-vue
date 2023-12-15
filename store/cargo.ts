@@ -5,16 +5,20 @@ import { useMapStore } from "./map"
 import { useTargetStore } from './target';
 
 export interface Cargo {
+  id: number
   x: number
   y: number
   onTarget: boolean
 }
+
+let Id = 1
 
 export const useCargoStore = defineStore('cargoStore', () => {
   const cargos = reactive<Cargo[]>([])
 
   function createCargo({ x, y }: { x: number, y: number }): Cargo {
     return {
+      id: Id++,
       x,
       y,
       onTarget: false
@@ -53,11 +57,16 @@ export const useCargoStore = defineStore('cargoStore', () => {
     cargo.onTarget = !!findTarget(cargo)
   }
 
+  function cleanAllCargos() {
+    cargos.splice(0, cargos.length)
+  }
+
   return {
     cargos,
     createCargo,
     addCargo,
     findCargo,
-    moveCargo
+    moveCargo,
+    cleanAllCargos
   }
 })

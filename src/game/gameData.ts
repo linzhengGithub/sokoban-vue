@@ -7,7 +7,7 @@ export interface LevelGameData {
   targets: { x: number, y: number }[]
 }
 
-export const levelGameData: LevelGameData = {
+export const firstLevelGameData: LevelGameData = {
   map: [
     [1, 1, 1, 1, 1, 1, 1],
     [1, 2, 2, 2, 2, 2, 1],
@@ -30,4 +30,48 @@ export const levelGameData: LevelGameData = {
   ]
 }
 
-export const gameData: LevelGameData[] = [levelGameData]
+export const secondLevelGameData: LevelGameData = {
+  map: [
+    [1, 1, 1, 1, 1, 1, 1],
+    [1, 2, 2, 2, 2, 1, 1],
+    [1, 2, 2, 2, 2, 2, 1],
+    [1, 2, 2, 2, 2, 2, 1],
+    [1, 2, 2, 2, 2, 2, 1],
+    [1, 1, 1, 1, 1, 1, 1]
+  ],
+  player: {
+    x: 1,
+    y: 1
+  },
+  cargos: [
+    { x: 2, y: 2 },
+    { x: 3, y: 2 }
+  ],
+  targets: [
+    { x: 4, y: 2 },
+    { x: 4, y: 4 }
+  ]
+}
+
+export const gameData: LevelGameData[] = [firstLevelGameData, secondLevelGameData, {
+  map: [
+    [1, 1, 1, 1, 1, 1, 1],
+    [1, 2, 2, 2, 1, 1, 1],
+    [1, 2, 2, 2, 2, 2, 1],
+    [1, 2, 2, 2, 2, 2, 1],
+    [1, 2, 2, 2, 2, 2, 1],
+    [1, 1, 1, 1, 1, 1, 1]
+  ],
+  player: {
+    x: 1,
+    y: 1
+  },
+  cargos: [
+    { x: 2, y: 2 },
+    { x: 3, y: 2 }
+  ],
+  targets: [
+    { x: 4, y: 2 },
+    { x: 4, y: 4 }
+  ]
+}]

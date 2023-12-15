@@ -5,11 +5,11 @@
       <Target :x="target.x" :y="target.y" />
     </template>
     <Player />
-    <template v-for="cargo in cargos">
+    <template v-for="cargo in cargos" :key="cargo.id">
       <Cargo :cargo="cargo" />
     </template>
     <div v-if="game.isGameCompleted">
-      <button> 下一关 </button>
+      <button @click="handleToNextLevel"> 下一关 </button>
     </div>
   </div>
 </template>
@@ -27,8 +27,12 @@ import { gameData } from '../../game/gameData'
 const { cargos } = useCargoStore()
 const { targets } = useTargetStore()
 
-const { setupGame, game } = useGameStore()
+const { setupGame, game, toNextLevel } = useGameStore()
 setupGame(gameData)
+
+function handleToNextLevel() {
+  toNextLevel()
+}
 </script>
 
 <style scoped></style>

@@ -31,7 +31,7 @@ describe('cargo test', () => {
       const cargo = createCargo({ x: 1, y: 2 })
       addCargo(cargo)
 
-      const {addTarget, createTarget} = useTargetStore()
+      const { addTarget, createTarget } = useTargetStore()
       addTarget(createTarget({ x: 2, y: 2 }))
 
       moveCargo(cargo, 1, 0)
@@ -44,7 +44,7 @@ describe('cargo test', () => {
       const cargo = createCargo({ x: 1, y: 2 })
       addCargo(cargo)
 
-      const {addTarget, createTarget} = useTargetStore()
+      const { addTarget, createTarget } = useTargetStore()
       addTarget(createTarget({ x: 2, y: 2 }))
 
       moveCargo(cargo, 1, 0)
@@ -53,4 +53,15 @@ describe('cargo test', () => {
       expect(cargo.onTarget).toBe(false);
     })
   })
+
+  it('should clean all cargos', () => {
+    const { cargos, createCargo, addCargo, cleanAllCargos } = useCargoStore()
+    addCargo(createCargo({ x: 1, y: 2 }))
+    addCargo(createCargo({ x: 2, y: 2 }))
+
+    cleanAllCargos()
+
+    expect(cargos.length).toBe(0);
+  })
+
 })

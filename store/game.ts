@@ -3,7 +3,7 @@ import { useMapStore } from "./map";
 import { usePlayerStore } from "./player";
 import { useCargoStore } from "./cargo";
 import { useTargetStore } from "./target";
-import { type LevelGameData, levelGameData } from '../src/game/gameData';
+import { type LevelGameData, gameData } from '../src/game/gameData';
 import { reactive } from "vue";
 
 interface Game {
@@ -12,6 +12,8 @@ interface Game {
 }
 
 type GameData = LevelGameData[]
+
+let _gameData: GameData
 
 export const useGameStore = defineStore('gameStore', () => {
 
@@ -26,19 +28,37 @@ export const useGameStore = defineStore('gameStore', () => {
   }
 
   function setupGame(gameData: GameData) {
-    const levelGameData = gameData[game.level - 1]
+    _gameData = gameData
+
+    setupLevel()
+  }
+
+  function toNextLevel() {
+    game.level += 1
+
+    game.isGameCompleted = false
+
+    setupLevel()
+  }
+
+  function setupLevel() {
+    const levelGameData = _gameData[game.level - 1]
 
     const { setupMap } = useMapStore()
     const { player } = usePlayerStore()
-    const { createCargo, addCargo } = useCargoStore()
-    const { addTarget, createTarget } = useTargetStore()
+    const { createCargo, addCargo, cleanAllCargos } = useCargoStore()
+    const { addTarget, createTarget, cleanAllTargets } = useTargetStore()
 
     setupMap(levelGameData.map)
     player.x = levelGameData.player.x
     player.y = levelGameData.player.y
+
+    cleanAllCargos()
     levelGameData.cargos.forEach(c => addCargo(createCargo({ x: c.x, y: c.y })))
+
+    cleanAllTargets()
     levelGameData.targets.forEach(t => addTarget(createTarget({ x: t.x, y: t.y })))
   }
 
-  return { game, detectionGameCompleted, setupGame }
+  return { game, detectionGameCompleted, setupGame, toNextLevel }
 })
