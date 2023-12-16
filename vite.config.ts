@@ -4,7 +4,11 @@ import vue from '@vitejs/plugin-vue'
 // https://vitejs.dev/config/
 export default defineConfig({
   test: {
-    environment: 'happy-dom'
+    environment: 'happy-dom',
+    coverage: {
+      provider: 'v8',
+      enabled: true,
+    }
   },
   plugins: [vue()],
 })

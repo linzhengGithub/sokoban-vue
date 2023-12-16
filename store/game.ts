@@ -3,7 +3,7 @@ import { useMapStore } from "./map";
 import { usePlayerStore } from "./player";
 import { useCargoStore } from "./cargo";
 import { useTargetStore } from "./target";
-import { type LevelGameData, gameData } from '../src/game/gameData';
+import { type LevelGameData } from '../src/game/gameData';
 import { reactive } from "vue";
 
 interface Game {

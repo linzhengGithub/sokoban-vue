@@ -21,7 +21,7 @@ export const usePlayerStore = defineStore('playerStore', () => {
       y: player.y + dy
     }
 
-    if (isWall(nextPosition)) return
+    if (isWall(nextPosition)) return;
 
     const { findCargo, moveCargo } = useCargoStore()
 
@@ -29,7 +29,7 @@ export const usePlayerStore = defineStore('playerStore', () => {
 
     if (cargo) {
       const isMoveCargo = moveCargo(cargo, dx, dy)
-      if (!isMoveCargo) return
+      if (!isMoveCargo) return;
     }
 
     player.x += dx

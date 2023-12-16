@@ -17,9 +17,6 @@ export function useMove() {
       case 'ArrowUp':
         movePlayerToUp()
         break
-
-      default:
-        break
     }
   })
 }
