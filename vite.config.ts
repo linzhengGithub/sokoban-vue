@@ -3,6 +3,11 @@ import vue from '@vitejs/plugin-vue'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  resolve: {
+    alias: {
+      '@': '/src'
+    }
+  },
   test: {
     environment: 'happy-dom',
     coverage: {
@@ -10,5 +15,7 @@ export default defineConfig({
       enabled: true,
     }
   },
-  plugins: [vue()],
+  plugins: [
+    vue()
+  ],
 })

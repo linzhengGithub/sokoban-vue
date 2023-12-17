@@ -5,7 +5,7 @@ import { useCargoStore } from '../cargo'
 import { useTargetStore } from '../target'
 import { useGameStore } from '../game'
 import { createPinia, setActivePinia } from 'pinia'
-import { LevelGameData} from '../../src/game/gameData';
+import { LevelGameData} from '@/game/gameData';
 
 
 const firstLevelGameData = {

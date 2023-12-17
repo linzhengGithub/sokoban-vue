@@ -1,9 +1,8 @@
 <template>
   <div>
-    <Game />
+    <Router-view></Router-view>
   </div>
 </template>
 
 <script setup lang="ts">
-import Game from '../src/components/Game/index.vue'
 </script>

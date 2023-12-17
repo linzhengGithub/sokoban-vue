@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 import { reactive } from "vue";
-import { Position } from "../src/composables/usePosition";
+import { Position } from "@/composables/usePosition";
 
 interface Target {
   x: number

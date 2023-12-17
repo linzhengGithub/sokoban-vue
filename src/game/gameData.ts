@@ -1,4 +1,4 @@
-import { Map } from "../../store/map"
+import { Map } from "@/store/map"
 
 export interface LevelGameData {
   map: Map

@@ -6,10 +6,10 @@
 
 <script setup lang="ts">
 import keeperImg from '../../assets/keeper.png'
-import { usePlayerStore } from '../../../store/player'
+import { usePlayerStore } from '@/store/player'
 import { onMounted, onUnmounted } from 'vue'
 import { usePosition } from '../../composables/usePosition'
-import { useGameStore } from '../../../store/game'
+import { useGameStore } from '@/store/game'
 
 useMove()
 const { player } = usePlayerStore()
