@@ -1,5 +1,5 @@
-import Game from '../view/Game.vue';
-import Edit from '../view/Edit.vue';
+import Game from '@/view/Game.vue';
+import Edit from '@/view/Edit.vue';
 import { createWebHashHistory, createRouter } from 'vue-router';
 
 export const router = createRouter({
