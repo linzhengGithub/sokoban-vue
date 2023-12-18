@@ -8,7 +8,7 @@
 import cargoImg from '../../assets/cargo.png'
 import cargoOnTargetImg from '../../assets/cargo_on_target.png'
 import { usePosition } from '../../composables/usePosition'
-import { type Cargo } from '../../../store/cargo';
+import { type Cargo } from '@/store/cargo';
 
 interface Props {
   cargo: Cargo

@@ -1,5 +1,5 @@
 import { it, expect, describe, beforeEach } from 'vitest'
-import { usePlayerStore } from '../../../store/player'
+import { usePlayerStore } from '@/store/player'
 import { useMove } from './player'
 import { createPinia, setActivePinia } from 'pinia';
 import { useMapStore } from '@/store/map';

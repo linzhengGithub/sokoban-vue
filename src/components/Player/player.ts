@@ -1,4 +1,4 @@
-import { usePlayerStore } from '../../../store/player';
+import { usePlayerStore } from '@/store/player';
 
 export function useMove() {
   const { movePlayerToLeft, movePlayerToRight, movePlayerToDown, movePlayerToUp } = usePlayerStore()
