@@ -22,10 +22,14 @@ interface Props {
 
 const props = defineProps<Props>()
 
-const { map } = useMapEditStore()
+const { map, getCurrentSelectedEditElement } = useMapEditStore()
 
 function handleClick() {
-  map[props.y][props.x] = MapTile.WALL
+  if (getCurrentSelectedEditElement().name === 'wall') {
+    map[props.y][props.x] = MapTile.WALL
+  } else if (getCurrentSelectedEditElement().name === 'floor') {
+    map[props.y][props.x] = MapTile.FLOOR
+  }
 }
 </script>
 

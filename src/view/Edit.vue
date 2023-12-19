@@ -6,12 +6,13 @@
       </div>
       <div class="w-2/6">store</div>
     </div>
-    <div> 元素选择区 </div>
+    <div> <EditElementView /> </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import MapEdit from '@/components/Edit/MapEdit.vue';
+import MapEdit from '@/components/Edit/MapEdit.vue'
+import EditElementView from '@/components/Edit/EditElementView.vue'
 </script>
 
 <style scoped></style>
