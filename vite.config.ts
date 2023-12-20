@@ -10,10 +10,10 @@ export default defineConfig({
   },
   test: {
     environment: 'happy-dom',
-    coverage: {
-      provider: 'v8',
-      enabled: true,
-    }
+    // coverage: {
+    //   provider: 'v8',
+    //   enabled: true,
+    // }
   },
   plugins: [
     vue()

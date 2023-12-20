@@ -4,10 +4,10 @@
     <div class="flex space-x-2 items-center">
       <h3> 地图元素: </h3>
       <div>
-        <img :src="wallImg" @click="handleClick('wall')" />
+        <img :src="wallImg" @click="handleClick(wallEditElement)" />
       </div>
       <div>
-        <img :src="floorImg" @click="handleClick('floor')" />
+        <img :src="floorImg" @click="handleClick(floorEditElement)" />
       </div>
     </div>
   </div>
@@ -16,12 +16,13 @@
 <script setup lang="ts">
 import floorImg from '@/assets/floor.png'
 import wallImg from '@/assets/wall.png'
-import { useMapEditStore } from '@/store/edit/mapEdit'
+import { useEditElementStore } from '@/store/edit/editElement';
+import { type EditElement, wallEditElement, floorEditElement } from '@/store/edit/editElement';
 
-const { setCurrentSelectedEditElement } = useMapEditStore()
+const {setCurrentSelectedEditElement} = useEditElementStore()
 
-function handleClick(name: 'wall' | 'floor') {
-  setCurrentSelectedEditElement({ name })
+function handleClick(editElement: EditElement) {
+  setCurrentSelectedEditElement(editElement)
 }
 </script>
 
