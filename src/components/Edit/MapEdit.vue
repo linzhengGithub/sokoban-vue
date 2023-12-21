@@ -12,7 +12,9 @@
 import MapBlock from './MapBlock.vue'
 import { useMapEditStore } from '../../store/edit/mapEdit'
 
-const { map } = useMapEditStore()
+const { map, initMap } = useMapEditStore()
+
+initMap()
 </script>
 
 <style scoped></style>

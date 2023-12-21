@@ -9,9 +9,10 @@ describe('edit element test', () => {
     setActivePinia(createPinia())
   });
   it('should be changed to wall when current selected element is wall', () => {
-    const { map } = useMapEditStore()
+    const { map, initMap } = useMapEditStore()
     const { getCurrentSelectedEditElement, setCurrentSelectedEditElement } = useEditElementStore()
 
+    initMap()
     setCurrentSelectedEditElement(wallEditElement)
     getCurrentSelectedEditElement().execute({ x: 1, y: 1 })
 
@@ -19,9 +20,10 @@ describe('edit element test', () => {
   })
 
   it('should be changed to floor when current selected element is floor', () => {
-    const { map } = useMapEditStore()
+    const { map, initMap } = useMapEditStore()
     const { getCurrentSelectedEditElement, setCurrentSelectedEditElement } = useEditElementStore()
 
+    initMap()
     setCurrentSelectedEditElement(floorEditElement)
     getCurrentSelectedEditElement().execute({ x: 1, y: 1 })
 
