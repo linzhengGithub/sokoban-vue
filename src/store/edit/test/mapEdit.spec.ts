@@ -11,9 +11,73 @@ describe('map edit test', () => {
 
     const row = 8
     const col = 8
-    initMap()
+    initMap(row, col)
 
     expect(map.length).toBe(row);
     expect(map[0].length).toBe(col);
   })
+
+  describe('change row / col', () => {
+    it('should be map row to equal the row when increase row', () => {
+      const { initMap, map, updateRowMap, setRow } = useMapEditStore()
+
+      initMap(2, 2)
+      setRow(4)
+
+      updateRowMap()
+
+      expect(map).toMatchInlineSnapshot(`
+        [
+          [
+            2,
+            2,
+          ],
+          [
+            2,
+            2,
+          ],
+          [
+            2,
+            2,
+          ],
+          [
+            2,
+            2,
+          ],
+        ]
+      `)
+    })
+  })
+  it('should be map row to equal the row when decrease row', () => {
+    const { initMap, map, updateRowMap, setRow } = useMapEditStore()
+
+    initMap(4, 4)
+    setRow(3)
+
+    updateRowMap()
+
+    expect(map).toMatchInlineSnapshot(`
+      [
+        [
+          2,
+          2,
+          2,
+          2,
+        ],
+        [
+          2,
+          2,
+          2,
+          2,
+        ],
+        [
+          2,
+          2,
+          2,
+          2,
+        ],
+      ]
+    `)
+  })
+
 })

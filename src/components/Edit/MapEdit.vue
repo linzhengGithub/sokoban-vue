@@ -10,11 +10,9 @@
 
 <script setup lang="ts">
 import MapBlock from './MapBlock.vue'
-import { useMapEditStore } from '../../store/edit/mapEdit'
+import { useMapEditStore } from '@/store/edit/mapEdit'
 
-const { map, initMap } = useMapEditStore()
-
-initMap()
+const { map } = useMapEditStore()
 </script>
 
 <style scoped></style>
