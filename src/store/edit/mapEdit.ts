@@ -10,9 +10,16 @@ export const useMapEditStore = defineStore('map-edit', () => {
   const row = ref(8)
   const col = ref(8)
 
-  function initMap() {
+  function initMap(_row?: number, _col?: number) {
+    if (_row) {
+      setRow(_row)
+    }
+    if (_col) {
+      setCol(_col)
+    }
+
     for (let i = 0; i < row.value; i++) {
-    const cells = []
+      const cells = []
       for (let j = 0; j < col.value; j++) {
         cells.push(MapTile.FLOOR)
       }
@@ -20,5 +27,30 @@ export const useMapEditStore = defineStore('map-edit', () => {
     }
   }
 
-  return { map, row, col, initMap }
+  function updateRowMap() {
+    const oldRow = map.length
+    const col = map[0].length
+    // 原本的 map row 小于 现在的 row = 增加
+    // 原本的 map row 大于 现在的 row = 减少
+    if (!row.value) return
+    if (row.value > oldRow) {
+      const diff = row.value - oldRow
+      for (let i = 0; i < diff; i++) {
+        map.push(new Array(col).fill(MapTile.FLOOR))
+      }
+    } else if (row.value < oldRow) {
+      const diff = oldRow - row.value
+      map.splice(map.length - diff, map.length)
+    }
+  }
+
+  function setRow(_row: number) {
+    row.value = _row
+  }
+
+  function setCol(_col: number) {
+    col.value = _col
+  }
+
+  return { map, row, col, initMap, setRow, setCol, updateRowMap }
 })
