@@ -20,13 +20,14 @@ import EditElement from './EditElement.vue'
 import { wallEditElement, floorEditElement } from '@/store/edit/editElement'
 import { toRefs, watchEffect } from 'vue'
 
-const { updateRowMap, initMap } = useMapEditStore()
+const { updateRowMap, updateColMap, initMap } = useMapEditStore()
 const { row, col } = toRefs(useMapEditStore())
 
 initMap()
 
 watchEffect(() => {
   updateRowMap()
+  updateColMap()
 })
 </script>
 

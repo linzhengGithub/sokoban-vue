@@ -44,6 +44,27 @@ export const useMapEditStore = defineStore('map-edit', () => {
     }
   }
 
+  function updateColMap() {
+    const oldCol = map[0].length
+    // const row = map.length
+    // 原本的 map col 小于 现在的 col = 增加
+    // 原本的 map col 大于 现在的 col = 减少
+    if (!col.value) return
+    if (col.value > oldCol) {
+      const diff = col.value - oldCol
+      for (let i = 0; i < row.value; i++) {
+        for (let j = 0; j < diff; j++) {
+          map[i].push(MapTile.FLOOR)
+        }
+      }
+    } else if (col.value < oldCol) {
+      const diff = oldCol - col.value
+      for (let i = 0; i < row.value; i++) {
+        map[i].splice(map[i].length - diff, map[i].length)
+      }
+    }
+  }
+
   function setRow(_row: number) {
     row.value = _row
   }
@@ -52,5 +73,5 @@ export const useMapEditStore = defineStore('map-edit', () => {
     col.value = _col
   }
 
-  return { map, row, col, initMap, setRow, setCol, updateRowMap }
+  return { map, row, col, initMap, setRow, setCol, updateRowMap, updateColMap }
 })

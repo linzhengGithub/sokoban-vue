@@ -47,37 +47,92 @@ describe('map edit test', () => {
         ]
       `)
     })
+    it('should be map row to equal the row when decrease row', () => {
+      const { initMap, map, updateRowMap, setRow } = useMapEditStore()
+
+      initMap(4, 4)
+      setRow(3)
+
+      updateRowMap()
+
+      expect(map).toMatchInlineSnapshot(`
+        [
+          [
+            2,
+            2,
+            2,
+            2,
+          ],
+          [
+            2,
+            2,
+            2,
+            2,
+          ],
+          [
+            2,
+            2,
+            2,
+            2,
+          ],
+        ]
+      `)
+    })
+
+    it('should be map col to equal the row when increase col', () => {
+      const { initMap, map, updateColMap, setCol } = useMapEditStore()
+
+      initMap(2, 2)
+      setCol(4)
+
+      updateColMap()
+
+      expect(map).toMatchInlineSnapshot(`
+        [
+          [
+            2,
+            2,
+            2,
+            2,
+          ],
+          [
+            2,
+            2,
+            2,
+            2,
+          ],
+        ]
+      `)
+    })
   })
-  it('should be map row to equal the row when decrease row', () => {
-    const { initMap, map, updateRowMap, setRow } = useMapEditStore()
+
+  it('should be map col to equal the row when increase col', () => {
+    const { initMap, map, updateColMap, setCol } = useMapEditStore()
 
     initMap(4, 4)
-    setRow(3)
+    setCol(2)
 
-    updateRowMap()
+    updateColMap()
 
     expect(map).toMatchInlineSnapshot(`
       [
         [
           2,
           2,
+        ],
+        [
           2,
           2,
         ],
         [
           2,
           2,
-          2,
-          2,
         ],
         [
-          2,
-          2,
           2,
           2,
         ],
       ]
     `)
   })
-
 })
