@@ -17,7 +17,7 @@ describe('map edit test', () => {
     expect(map[0].length).toBe(col);
   })
 
-  describe('change row / col', () => {
+  describe('change row', () => {
     it('should be map row to equal the row when increase row', () => {
       const { initMap, map, updateRowMap, setRow } = useMapEditStore()
 
@@ -78,7 +78,9 @@ describe('map edit test', () => {
         ]
       `)
     })
+  })
 
+  describe('change col', () => {
     it('should be map col to equal the row when increase col', () => {
       const { initMap, map, updateColMap, setCol } = useMapEditStore()
 
@@ -104,35 +106,35 @@ describe('map edit test', () => {
         ]
       `)
     })
+    it('should be map col to equal the row when decrease col', () => {
+      const { initMap, map, updateColMap, setCol } = useMapEditStore()
+
+      initMap(4, 4)
+      setCol(2)
+
+      updateColMap()
+
+      expect(map).toMatchInlineSnapshot(`
+        [
+          [
+            2,
+            2,
+          ],
+          [
+            2,
+            2,
+          ],
+          [
+            2,
+            2,
+          ],
+          [
+            2,
+            2,
+          ],
+        ]
+      `)
+    })
   })
 
-  it('should be map col to equal the row when increase col', () => {
-    const { initMap, map, updateColMap, setCol } = useMapEditStore()
-
-    initMap(4, 4)
-    setCol(2)
-
-    updateColMap()
-
-    expect(map).toMatchInlineSnapshot(`
-      [
-        [
-          2,
-          2,
-        ],
-        [
-          2,
-          2,
-        ],
-        [
-          2,
-          2,
-        ],
-        [
-          2,
-          2,
-        ],
-      ]
-    `)
-  })
 })

@@ -32,7 +32,6 @@ export const useMapEditStore = defineStore('map-edit', () => {
     const col = map[0].length
     // 原本的 map row 小于 现在的 row = 增加
     // 原本的 map row 大于 现在的 row = 减少
-    if (!row.value) return
     if (row.value > oldRow) {
       const diff = row.value - oldRow
       for (let i = 0; i < diff; i++) {
@@ -46,22 +45,18 @@ export const useMapEditStore = defineStore('map-edit', () => {
 
   function updateColMap() {
     const oldCol = map[0].length
-    // const row = map.length
     // 原本的 map col 小于 现在的 col = 增加
     // 原本的 map col 大于 现在的 col = 减少
-    if (!col.value) return
     if (col.value > oldCol) {
       const diff = col.value - oldCol
-      for (let i = 0; i < row.value; i++) {
-        for (let j = 0; j < diff; j++) {
-          map[i].push(MapTile.FLOOR)
-        }
-      }
+      map.forEach((cells) => {
+        cells.push(...new Array(diff).fill(MapTile.FLOOR))
+      })
     } else if (col.value < oldCol) {
       const diff = oldCol - col.value
-      for (let i = 0; i < row.value; i++) {
-        map[i].splice(map[i].length - diff, map[i].length)
-      }
+      map.forEach((cells) => {
+        cells.splice(cells.length - diff, cells.length)
+      })
     }
   }
 

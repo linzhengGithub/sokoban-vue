@@ -26,7 +26,12 @@ const { row, col } = toRefs(useMapEditStore())
 initMap()
 
 watchEffect(() => {
+  if (!row.value) return
   updateRowMap()
+})
+
+watchEffect(() => {
+  if (!col.value) return
   updateColMap()
 })
 </script>
