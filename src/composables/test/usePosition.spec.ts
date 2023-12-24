@@ -17,6 +17,20 @@ describe('usePosition test group', () => {
     });
   })
 
+  it('should set step', () => {
+    const pos = {
+      x: 1,
+      y: 1
+    }
+
+    const { position } = usePosition(pos, 34)
+
+    expect(position.value).toEqual({
+      left: '34px',
+      top: '34px'
+    });
+  })
+
   it('should update position when reactive data changed', () => {
     const pos = reactive({
       x: 2,
