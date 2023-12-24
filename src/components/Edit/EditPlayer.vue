@@ -7,8 +7,12 @@
 <script setup lang="ts">
 import keeperImg from '@/assets/keeper.png'
 import { usePosition } from '@/composables/usePosition'
+import { STEP_EDIT } from '@/composables/usePosition'
+import { useEditPlayerStore } from '@/store/edit/editPlayer'
 
-const { position } = usePosition({ x: 1, y: 1 }, 34)
+const { player } = useEditPlayerStore()
+
+const { position } = usePosition(player, STEP_EDIT)
 </script>
 
 <style scoped></style>

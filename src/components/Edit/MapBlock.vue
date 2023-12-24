@@ -34,7 +34,7 @@ const { getCurrentSelectedEditElement } = useEditElementStore()
 const { isDraging, startDrag, stopDrag } = useDrag()
 
 function handleClick() {
-  getCurrentSelectedEditElement().execute(props)
+  getCurrentSelectedEditElement()?.execute(props)
 }
 
 function handleMouseup() {

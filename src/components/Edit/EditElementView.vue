@@ -6,10 +6,14 @@
       <div> col: <input type="text" class="border border-yellow-500" v-model="col" /> </div>
     </div>
     <h3>元素选择器</h3>
-    <div class="flex space-x-2 items-center">
+    <div class="flex space-x-2 items-center mb-2">
       <h3> 地图元素: </h3>
       <EditElement :edit-element="wallEditElement" />
       <EditElement :edit-element="floorEditElement" />
+    </div>
+    <div class="flex space-x-2 items-center mb-2">
+      <h3> 玩家元素: </h3>
+      <EditElement :edit-element="playerEditElement" />
     </div>
   </div>
 </template>
@@ -17,7 +21,7 @@
 <script setup lang="ts">
 import { useMapEditStore } from '@/store/edit/mapEdit'
 import EditElement from './EditElement.vue'
-import { wallEditElement, floorEditElement } from '@/store/edit/editElement'
+import { wallEditElement, floorEditElement, playerEditElement } from '@/store/edit/editElement'
 import { toRefs, watchEffect } from 'vue'
 
 const { updateRowMap, updateColMap, initMap } = useMapEditStore()
