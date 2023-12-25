@@ -15,16 +15,26 @@
       <h3> 玩家元素: </h3>
       <EditElement :edit-element="playerEditElement" />
     </div>
+    <div class="flex space-x-2 items-center mb-2">
+      <h3> 当前选择元素: </h3>
+      {{ currentSelectedEditElement }}
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
 import { useMapEditStore } from '@/store/edit/mapEdit'
 import EditElement from './EditElement.vue'
-import { wallEditElement, floorEditElement, playerEditElement } from '@/store/edit/editElement'
-import { toRefs, watchEffect } from 'vue'
+import {
+  wallEditElement,
+  floorEditElement,
+  playerEditElement,
+  useEditElementStore
+} from '@/store/edit/editElement'
+import { toRefs, watchEffect, computed } from 'vue'
 
 const { updateRowMap, updateColMap, initMap } = useMapEditStore()
+const { getCurrentSelectedEditElement } = useEditElementStore()
 const { row, col } = toRefs(useMapEditStore())
 
 initMap()
@@ -37,6 +47,10 @@ watchEffect(() => {
 watchEffect(() => {
   if (!col.value) return
   updateColMap()
+})
+
+const currentSelectedEditElement = computed(() => {
+  return getCurrentSelectedEditElement()?.name
 })
 </script>
 
