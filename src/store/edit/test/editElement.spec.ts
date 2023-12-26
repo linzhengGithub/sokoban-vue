@@ -15,7 +15,7 @@ describe('edit element test', () => {
 
     initMap()
     setCurrentSelectedEditElement(wallEditElement)
-    getCurrentSelectedEditElement().execute({ x: 1, y: 1 })
+    getCurrentSelectedEditElement()!.execute({ x: 1, y: 1 })
 
     expect(map[1][1]).toBe(MapTile.WALL);
   })
@@ -26,7 +26,7 @@ describe('edit element test', () => {
 
     initMap()
     setCurrentSelectedEditElement(floorEditElement)
-    getCurrentSelectedEditElement().execute({ x: 1, y: 1 })
+    getCurrentSelectedEditElement()!.execute({ x: 1, y: 1 })
 
     expect(map[1][1]).toBe(MapTile.FLOOR);
   })
@@ -37,7 +37,7 @@ describe('edit element test', () => {
 
     const position = { x: 1, y: 1 }
     setCurrentSelectedEditElement(playerEditElement)
-    getCurrentSelectedEditElement().execute(position)
+    getCurrentSelectedEditElement()!.execute(position)
 
     expect(player.x).toBe(position.x);
     expect(player.y).toBe(position.y);
