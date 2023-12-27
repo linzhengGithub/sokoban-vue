@@ -3,6 +3,7 @@ import { Position } from "@/composables/usePosition"
 import { reactive } from "vue"
 import { useMapStore } from "./map"
 import { useTargetStore } from './target';
+import { generateId } from "@/utils/id";
 
 export interface Cargo {
   id: number
@@ -11,14 +12,12 @@ export interface Cargo {
   onTarget: boolean
 }
 
-let Id = 1
-
 export const useCargoStore = defineStore('cargoStore', () => {
   const cargos = reactive<Cargo[]>([])
 
   function createCargo({ x, y }: { x: number, y: number }): Cargo {
     return {
-      id: Id++,
+      id: generateId(),
       x,
       y,
       onTarget: false

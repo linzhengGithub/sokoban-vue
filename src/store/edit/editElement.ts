@@ -7,6 +7,8 @@ import wallImg from '@/assets/wall.png'
 import playerImg from '@/assets/keeper.png';
 import { useEditPlayerStore } from "./editPlayer";
 import { ref } from "vue";
+import cargoImg from '@/assets/cargo.png';
+import { useEditCargoStore } from "./editCargo";
 
 export interface EditElement {
   name: string
@@ -39,6 +41,15 @@ export const playerEditElement: EditElement = {
     const { player } = useEditPlayerStore()
     player.x = position.x
     player.y = position.y
+  }
+};
+
+export const cargoEditElement: EditElement = {
+  name: '箱子',
+  img: cargoImg,
+  execute: (position) => {
+    const { addCargo, createCargo } = useEditCargoStore()
+    addCargo(createCargo(position))
   }
 };
 

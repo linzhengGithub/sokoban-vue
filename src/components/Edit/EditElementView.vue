@@ -16,6 +16,10 @@
       <EditElement :edit-element="playerEditElement" />
     </div>
     <div class="flex space-x-2 items-center mb-2">
+      <h3> 放置元素: </h3>
+      <EditElement :edit-element="cargoEditElement" />
+    </div>
+    <div class="flex space-x-2 items-center mb-2">
       <h3> 当前选择元素: </h3>
       {{ currentSelectedEditElement }}
     </div>
@@ -29,7 +33,8 @@ import {
   wallEditElement,
   floorEditElement,
   playerEditElement,
-  useEditElementStore
+  useEditElementStore,
+  cargoEditElement
 } from '@/store/edit/editElement'
 import { toRefs, watchEffect, computed } from 'vue'
 

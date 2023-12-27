@@ -1,9 +1,10 @@
 import { it, expect, describe, beforeEach } from 'vitest'
 import { useMapEditStore } from '../mapEdit'
 import { MapTile } from '@/store/map'
-import { useEditElementStore, wallEditElement, floorEditElement, playerEditElement } from '../editElement'
+import { useEditElementStore, wallEditElement, floorEditElement, playerEditElement, cargoEditElement } from '../editElement'
 import { createPinia, setActivePinia } from 'pinia'
 import { useEditPlayerStore } from '../editPlayer'
+import { useEditCargoStore } from '../editCargo'
 
 describe('edit element test', () => {
   beforeEach(() => {
@@ -42,4 +43,18 @@ describe('edit element test', () => {
     expect(player.x).toBe(position.x);
     expect(player.y).toBe(position.y);
   })
+
+  it('should be update position of player when current selected element is player', () => {
+    const { cargos } = useEditCargoStore()
+    const { getCurrentSelectedEditElement, setCurrentSelectedEditElement } = useEditElementStore()
+
+    const position = { x: 1, y: 1 }
+    setCurrentSelectedEditElement(cargoEditElement)
+    getCurrentSelectedEditElement()!.execute(position)
+
+    expect(cargos[0].x).toBe(position.x);
+    expect(cargos[0].y).toBe(position.y);
+  })
+
+
 })
