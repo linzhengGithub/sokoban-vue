@@ -23,6 +23,10 @@ export const useEditCargoStore = defineStore('edit-cargo-store', () => {
     cargos.push(cargo)
   }
 
-  return { cargos, createCargo, addCargo }
+  function removeCargo(cargo: EditCargo) {
+    cargos.splice(cargos.indexOf(cargo), 1)
+  }
+
+  return { cargos, createCargo, addCargo, removeCargo }
 
 })

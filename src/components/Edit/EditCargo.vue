@@ -1,5 +1,5 @@
 <template>
-  <div class="absolute border border-blue-500" :style="position">
+  <div class="absolute border border-blue-500" :style="position" @dblclick="handleDbClick">
     <img :src="cargoImg" alt="" />
   </div>
 </template>
@@ -8,6 +8,7 @@
 import cargoImg from '@/assets/cargo.png'
 import { usePosition, STEP_EDIT } from '@/composables/usePosition';
 import { type EditCargo } from '@/store/edit/editCargo';
+import { useEditCargoStore } from '@/store/edit/editCargo';
 
 interface Props {
   cargo: EditCargo
@@ -16,6 +17,12 @@ interface Props {
 const props = defineProps<Props>()
 
 const { position } = usePosition(props.cargo, STEP_EDIT)
+const { removeCargo } = useEditCargoStore()
+
+function handleDbClick() {
+  console.log(3);
+  removeCargo(props.cargo)
+}
 </script>
 
 <style scoped></style>
