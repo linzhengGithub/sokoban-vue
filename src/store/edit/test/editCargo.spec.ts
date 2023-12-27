@@ -6,7 +6,7 @@ describe('editCargo test', () => {
   beforeEach(() => {
     setActivePinia(createPinia())
   });
-  it('should remove cargo', () => {
+  it('should remove a cargo', () => {
     const { cargos, addCargo, createCargo, removeCargo } = useEditCargoStore()
 
     const cargo = createCargo({ x: 1, y: 1 })

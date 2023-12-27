@@ -49,7 +49,7 @@ export const cargoEditElement: EditElement = {
   img: cargoImg,
   execute: (position) => {
     const { addCargo, createCargo } = useEditCargoStore()
-    addCargo(createCargo(position))
+    addCargo(createCargo({ x: position.x, y: position.y }))
   }
 };
 

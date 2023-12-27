@@ -44,7 +44,7 @@ describe('edit element test', () => {
     expect(player.y).toBe(position.y);
   })
 
-  it('should be update position of player when current selected element is player', () => {
+  it('should be update position of cargo when current selected element is cargo', () => {
     const { cargos } = useEditCargoStore()
     const { getCurrentSelectedEditElement, setCurrentSelectedEditElement } = useEditElementStore()
 
