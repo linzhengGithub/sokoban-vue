@@ -3,6 +3,9 @@
     <div class="flex w-full">
       <div class="w-4/6 bg-pink-500">
         <MapEdit />
+        <template v-for="target in targets">
+          <EditTarget :x="target.x" :y="target.y" />
+        </template>
         <EditPlayer />
         <template v-for="cargo in cargos" :key="cargo.id">
           <EditCargo :cargo="cargo" />
@@ -19,9 +22,12 @@ import MapEdit from '@/components/Edit/MapEdit.vue'
 import EditElementView from '@/components/Edit/EditElementView.vue'
 import EditPlayer from '@/components/Edit/EditPlayer.vue'
 import EditCargo from '@/components/Edit/EditCargo.vue'
+import EditTarget from '@/components/Edit/EditTarget.vue'
 import { useEditCargoStore } from '@/store/edit/editCargo'
+import { useEditTargetStore } from '@/store/edit/editTarget'
 
 const { cargos } = useEditCargoStore()
+const { targets } = useEditTargetStore()
 </script>
 
 <style scoped></style>

@@ -20,7 +20,6 @@ const { position } = usePosition(props.cargo, STEP_EDIT)
 const { removeCargo } = useEditCargoStore()
 
 function handleDbClick() {
-  console.log(3);
   removeCargo(props.cargo)
 }
 </script>
