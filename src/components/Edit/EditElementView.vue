@@ -18,6 +18,7 @@
     <div class="flex space-x-2 items-center mb-2">
       <h3> 放置元素: </h3>
       <EditElement :edit-element="cargoEditElement" />
+      <EditElement :edit-element="targetEditElement" />
     </div>
     <div class="flex space-x-2 items-center mb-2">
       <h3> 当前选择元素: </h3>
@@ -34,7 +35,8 @@ import {
   floorEditElement,
   playerEditElement,
   useEditElementStore,
-  cargoEditElement
+  cargoEditElement,
+  targetEditElement
 } from '@/store/edit/editElement'
 import { toRefs, watchEffect, computed } from 'vue'
 

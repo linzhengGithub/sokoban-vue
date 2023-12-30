@@ -1,17 +1,27 @@
+import { generateId } from "@/utils/id";
 import { defineStore } from "pinia";
 import { reactive } from "vue";
 
 export interface EditTarget {
   x: number
   y: number
+  id: number
 }
 
 export const useEditTargetStore = defineStore('edit-target-store', () => {
-  const targets = reactive<EditTarget[]>([
-    {
-      x: 4,
-      y: 4
-    }
-  ])
-  return { targets }
+  const targets = reactive<EditTarget[]>([])
+
+  function createTarget({ x, y }: { x: number, y: number }): EditTarget {
+    return { id: generateId(), x, y }
+  }
+
+  function addTarget(target: EditTarget) {
+    targets.push(target)
+  }
+
+  function removeTarget(target: EditTarget) {
+    targets.splice(targets.indexOf(target), 1)
+  }
+
+  return { targets, addTarget, createTarget, removeTarget }
 });

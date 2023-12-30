@@ -9,6 +9,8 @@ import { useEditPlayerStore } from "./editPlayer";
 import { ref } from "vue";
 import cargoImg from '@/assets/cargo.png';
 import { useEditCargoStore } from "./editCargo";
+import targetImg from '@/assets/target.png';
+import { useEditTargetStore } from "./editTarget";
 
 export interface EditElement {
   name: string
@@ -50,6 +52,15 @@ export const cargoEditElement: EditElement = {
   execute: (position) => {
     const { addCargo, createCargo } = useEditCargoStore()
     addCargo(createCargo({ x: position.x, y: position.y }))
+  }
+};
+
+export const targetEditElement: EditElement = {
+  name: '放置点',
+  img: targetImg,
+  execute: (position) => {
+    const { addTarget, createTarget } = useEditTargetStore()
+    addTarget(createTarget({ x: position.x, y: position.y }))
   }
 };
 
