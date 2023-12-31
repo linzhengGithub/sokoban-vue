@@ -7,7 +7,7 @@
         <template v-for="cargo in cargos" :key="cargo.id">
           <EditCargo :cargo="cargo" />
         </template>
-        <template v-for="target in targets" :kek="target.id">
+        <template v-for="target in targets" :key="target.id">
           <EditTarget :target="target" />
         </template>
       </div>
